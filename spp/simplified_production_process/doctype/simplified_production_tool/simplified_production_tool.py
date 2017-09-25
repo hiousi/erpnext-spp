@@ -241,8 +241,8 @@ class SimplifiedProductionTool(Document):
 					previous_sle = get_previous_sle({
 						"item_code": d.item_code,
 						"warehouse": d.s_warehouse or d.t_warehouse,
-						#"posting_date": self.posting_date,
-						#"posting_time": self.posting_time
+						"posting_date": nowdate(),
+						"posting_time": nowtime()
 					})
 
 					# get actual stock at source warehouse
