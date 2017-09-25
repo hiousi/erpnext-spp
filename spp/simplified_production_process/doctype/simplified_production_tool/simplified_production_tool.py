@@ -5,7 +5,7 @@
 
 from __future__ import unicode_literals
 import frappe
-from frappe.utils import cstr, flt, cint, nowdate, add_days, comma_and
+from frappe.utils import cstr, flt, cint, nowdate, nowtime, add_days, comma_and
 
 from frappe import msgprint, _
 
