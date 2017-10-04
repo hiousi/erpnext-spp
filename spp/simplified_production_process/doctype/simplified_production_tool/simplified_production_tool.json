@@ -639,7 +639,7 @@
  "module": "Simplified Production Process", 
  "name": "Simplified Production Tool", 
  "name_case": "", 
- "owner": "pierre@o10c.fr", 
+ "owner": "Administrator", 
  "permissions": [
   {
    "amend": 0, 
