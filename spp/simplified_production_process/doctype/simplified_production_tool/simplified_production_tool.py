@@ -15,9 +15,6 @@ from erpnext.manufacturing.doctype.production_order.production_order import get_
 from erpnext.stock.stock_ledger import get_previous_sle, NegativeStockError
 
 class SimplifiedProductionTool(Document):
-	def __init__(self, arg1, arg2=None):
-		super(SimplifiedProductionTool, self).__init__(arg1, arg2)
-		self.item_dict = {}
 
 	def clear_table(self, table_name):
 		self.set(table_name, [])
