@@ -258,8 +258,8 @@ class SimplifiedProductionTool(Document):
 			for se 	in se_list:
 				se.insert()
 				se.submit()
-			se_list = ["""Stock entry <a href="#Form/Stock Entry/%s" target="_blank">%s</a><br/>""" % (p.name, p.title) for p in se_list]
-			msgprint(_("{0} created").format(comma_and(se_list)))
+			se_list = ["""<a href="#Form/Stock Entry/%s" target="_blank">%s</a>""" % (p.name, p.title) for p in se_list]
+			msgprint(_("Created {0} stock entries:<br />{1}").format(len(se_list), "<br/>".join(se_list)))
 		else :
 			msgprint(_("No Stock Entry created"))
 
@@ -308,8 +308,9 @@ class SimplifiedProductionTool(Document):
 		se.status = "submitted" #submitted or "Draft"
 		se.from_bom = 1
 		se.use_multi_level_bom = 1 
-		se.title = "Manufacture %s x %s for order %s" % (se.fg_completed_qty,se.manufacture_item,se.sales_order)
-
+		se.title = "Manufacture %s x %s" % (se.fg_completed_qty,se.manufacture_item)
+		if (se.sales_order):
+				se.title += " for order %s" % (se.sales_order)
 		if warehouse:
 			se.from_warehouse = warehouse.get('wip_warehouse')
 		if not se.to_warehouse:
