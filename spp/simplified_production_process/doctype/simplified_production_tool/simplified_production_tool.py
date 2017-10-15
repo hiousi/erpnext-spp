@@ -258,7 +258,7 @@ class SimplifiedProductionTool(Document):
 			for se 	in se_list:
 				se.insert()
 				se.submit()
-			se_list = ["""<a href="#Form/Stock Entry/%s" target="_blank">%s</a>""" % (p, p) for p in se_list]
+			se_list = ["""Stock entry <a href="#Form/Stock Entry/%s" target="_blank">%s</a><br/>""" % (p.name, p.title) for p in se_list]
 			msgprint(_("{0} created").format(comma_and(se_list)))
 		else :
 			msgprint(_("No Stock Entry created"))
