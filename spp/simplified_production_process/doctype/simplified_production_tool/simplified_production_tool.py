@@ -76,7 +76,7 @@ class SimplifiedProductionTool(Document):
 				pp_so.customer = cstr(r['customer'])
 				pp_so.grand_total = flt(r['base_grand_total'])
 
- @frappe.whitelist()
+ 	@frappe.whitelist()
     def get_pending_material_requests(self):
         """ Pull Material Requests that are pending based on criteria selected"""
         mr_filter = item_filter = ""
