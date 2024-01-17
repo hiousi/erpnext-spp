@@ -120,7 +120,8 @@ class SimplifiedProductionTool(Document):
 				mr = self.append('material_requests', {})
 				mr.material_request = r['name']
 				mr.material_request_date = cstr(r['transaction_date'])
-
+  
+	@frappe.whitelist()
 	def get_items(self):
 		if self.get_items_from == "Sales Order":
 			self.get_so_items()
@@ -212,8 +213,7 @@ class SimplifiedProductionTool(Document):
 			if not flt(d.planned_qty):
 				frappe.throw(_("Please enter Planned Qty for Item {0} at row {1}").format(d.item_code, d.idx))
 
-
-
+	@frappe.whitelist()
 	def raise_stock_entries(self):
 		"""It will raise a stock entries of purpose manufacture for all distinct FG items"""
 		
