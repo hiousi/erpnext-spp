@@ -76,7 +76,7 @@ cur_frm.cscript.item_code = function(doc,cdt,cdn) {
 	var d = locals[cdt][cdn];
 	if (d.item_code) {
 		frappe.call({
-			method: "erpnext.manufacturing.doctype.production_order.production_order.get_item_details",
+			method: "erpnext.manufacturing.doctype.work_order.work_order.get_item_details",
 			args: {
 				"item" : d.item_code
 			},
