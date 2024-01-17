@@ -22,7 +22,8 @@ class SimplifiedProductionTool(Document):
 	def validate_company(self):
 		if not self.company:
 			frappe.throw(_("Please enter Company"))
-
+			
+	@frappe.whitelist()
 	def get_open_sales_orders(self):
 		""" Pull sales orders  which are pending to deliver based on criteria selected"""
 		so_filter = item_filter = ""
