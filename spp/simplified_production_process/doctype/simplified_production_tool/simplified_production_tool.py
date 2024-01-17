@@ -11,7 +11,7 @@ from frappe import msgprint, _
 
 from frappe.model.document import Document
 from erpnext.manufacturing.doctype.bom.bom import validate_bom_no
-from erpnext.manufacturing.doctype.production_order.production_order import get_item_details
+from erpnext.manufacturing.doctype.work_order.work_order import get_item_details
 from erpnext.stock.stock_ledger import get_previous_sle, NegativeStockError
 
 class SimplifiedProductionTool(Document):
@@ -298,7 +298,7 @@ class SimplifiedProductionTool(Document):
 
 	def make_stock_entry(self, item_dict):
 		"""Create a stock entry with purpose of manufacturing."""
-		from erpnext.manufacturing.doctype.production_order.production_order import  get_default_warehouse
+		from erpnext.manufacturing.doctype.work_order.work_order import  get_default_warehouse
 
 		warehouse = get_default_warehouse()
 		se = frappe.new_doc("Stock Entry")
