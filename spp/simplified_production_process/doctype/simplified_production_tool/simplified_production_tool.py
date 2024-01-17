@@ -76,16 +76,15 @@ class SimplifiedProductionTool(Document):
                 pp_so.sales_order_date = cstr(r['transaction_date'])
                 pp_so.customer = cstr(r['customer'])
                 pp_so.grand_total = flt(r['base_grand_total'])
-	def add_mr_in_table(self, pending_mr):
-		""" Add Material Requests in the table"""
-		self.clear_table("material_requests")
-
-		mr_list = []
-		for r in pending_mr:
-			if cstr(r['name']) not in mr_list:
-				mr = self.append('material_requests', {})
-				mr.material_request = r['name']
-				mr.material_request_date = cstr(r['transaction_date'])
+                
+    def add_mr_in_table(self, pending_mr):
+        self.clear_table("material_requests")
+        mr_list = []
+        for r in pending_mr:
+            if cstr(r['name']) not in mr_list:
+                mr = self.append('material_requests', {})
+                mr.material_request = r['name']
+                mr.material_request_date = cstr(r['transaction_date'])
 
 
     @frappe.whitelist()
