@@ -76,37 +76,39 @@ class SimplifiedProductionTool(Document):
 				pp_so.customer = cstr(r['customer'])
 				pp_so.grand_total = flt(r['base_grand_total'])
 
-	@frappe.whitelist()
-	def get_pending_material_requests(self):
-		""" Pull Material Requests that are pending based on criteria selected"""
-		mr_filter = item_filter = ""
-		if self.from_date:
-			mr_filter += " and mr.transaction_date >= %(from_date)s"
-		if self.to_date:
-			mr_filter += " and mr.transaction_date <= %(to_date)s"
-		if self.warehouse:
-			mr_filter += " and mr_item.warehouse = %(warehouse)s"
+ @frappe.whitelist()
+    def get_pending_material_requests(self):
+        """ Pull Material Requests that are pending based on criteria selected"""
+        mr_filter = item_filter = ""
+        if self.from_date:
+            mr_filter += " and mr.transaction_date >= %(from_date)s"
+        if self.to_date:
+            mr_filter += " and mr.transaction_date <= %(to_date)s"
 
-		if self.fg_item:
-			item_filter += " and mr_item.item_code = %(item)s"
+        # Check if warehouse attribute exists and is set
+        if hasattr(self, 'warehouse') and self.warehouse:
+            mr_filter += " and mr_item.warehouse = %(warehouse)s"
 
-		pending_mr = frappe.db.sql("""
-			select distinct mr.name, mr.transaction_date
-			from `tabMaterial Request` mr, `tabMaterial Request Item` mr_item
-			where mr_item.parent = mr.name
-				and mr.material_request_type = "Manufacture"
-				and mr.docstatus = 1
-				and mr_item.qty > ifnull(mr_item.ordered_qty,0) {0} {1}
-				and (exists (select name from `tabBOM` bom where bom.item=mr_item.item_code
-					and bom.is_active = 1))
-			""".format(mr_filter, item_filter), {
-				"from_date": self.from_date,
-				"to_date": self.to_date,
-				"warehouse": self.warehouse,
-				"item": self.fg_item
-			}, as_dict=1)
+        if self.fg_item:
+            item_filter += " and mr_item.item_code = %(item)s"
 
-		self.add_mr_in_table(pending_mr)
+        pending_mr = frappe.db.sql("""
+            select distinct mr.name, mr.transaction_date
+            from `tabMaterial Request` mr, `tabMaterial Request Item` mr_item
+            where mr_item.parent = mr.name
+                and mr.material_request_type = "Manufacture"
+                and mr.docstatus = 1
+                and mr_item.qty > ifnull(mr_item.ordered_qty,0) {0} {1}
+                and (exists (select name from `tabBOM` bom where bom.item=mr_item.item_code
+                    and bom.is_active = 1))
+            """.format(mr_filter, item_filter), {
+                "from_date": self.from_date,
+                "to_date": self.to_date,
+                "warehouse": getattr(self, 'warehouse', None),  # Using getattr to handle the case where warehouse might not be set
+                "item": self.fg_item
+            }, as_dict=1)
+
+        self.add_mr_in_table(pending_mr)
 
 	def add_mr_in_table(self, pending_mr):
 		""" Add Material Requests in the table"""
