@@ -119,8 +119,6 @@ class SimplifiedProductionTool(Document):
             # Using getattr to handle the case where warehouse might not be set
             "item": self.fg_item
         }, as_dict=1)
-        for p in pending_mr:
-            frappe.msgprint(p)
         self.add_mr_in_table(pending_mr)
 
 
