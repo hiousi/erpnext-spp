@@ -233,6 +233,7 @@ class SimplifiedProductionTool(Document):
         for key in items:
             i = items[key]
             se = self.make_stock_entry(items[key])
+            print(se)
             if se:
 
                 # check quantities in stock for each BOM items before insert and submit
