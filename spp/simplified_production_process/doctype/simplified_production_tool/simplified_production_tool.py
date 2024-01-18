@@ -311,20 +311,20 @@ class SimplifiedProductionTool(Document):
         se.purpose = "Manufacture"
         se.stock_entry_type = "Manufacture"
         se.additional_costs = [
-      {
-        "docstatus": 1,
-        "idx": 1,
-        "expense_account": "5103 - Freight - MG",
-        "account_currency": "USD",
-        "exchange_rate": 1.0,
-        "description": "f",
-        "amount": 0.0,
-        "base_amount": 0.0,
-        "parentfield": "additional_costs",
-        "parenttype": "Stock Entry",
-        "doctype": "Landed Cost Taxes and Charges"
-      }
-    ],
+            {
+                "docstatus": 1,
+                "idx": 1,
+                "expense_account": "5103 - Freight - MG",
+                "account_currency": "USD",
+                "exchange_rate": 1.0,
+                "description": "f",
+                "amount": 0.0,
+                "base_amount": 0.0,
+                "parentfield": "additional_costs",
+                "parenttype": "Stock Entry",
+                "doctype": "Landed Cost Taxes and Charges"
+            }
+            ]
         se.remarks: "bulk",
         se.status = "submitted" # submitted or "Draft"
         se.from_bom = 1
