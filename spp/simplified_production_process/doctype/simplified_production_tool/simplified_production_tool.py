@@ -325,7 +325,7 @@ class SimplifiedProductionTool(Document):
                 "doctype": "Landed Cost Taxes and Charges"
             }
             ]
-        se.remarks: "bulk",
+        se.remarks: "bulk"
         se.status = "submitted" # submitted or "Draft"
         se.from_bom = 1
         se.use_multi_level_bom = 1
