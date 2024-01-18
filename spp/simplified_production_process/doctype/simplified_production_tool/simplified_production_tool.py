@@ -317,6 +317,7 @@ class SimplifiedProductionTool(Document):
                 "idx": 1,
                 "expense_account": "5103 - Freight - MG",
                 "exchange_rate": 1.0,
+                "account_currency": "USD",
                 "description": "f",
                 "amount": 0.0,
                 "base_amount": 0.0,
