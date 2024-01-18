@@ -315,7 +315,6 @@ class SimplifiedProductionTool(Document):
                 "docstatus": 1,
                 "idx": 1,
                 "expense_account": "5103 - Freight - MG",
-                "account_currency": "USD",
                 "exchange_rate": 1.0,
                 "description": "f",
                 "amount": 0.0,
