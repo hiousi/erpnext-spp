@@ -281,7 +281,7 @@ class SimplifiedProductionTool(Document):
                 "stock_uom"				: d.stock_uom,
                 "company"				: self.company,
                 "from_warehouse"			: "",
-                "to_warehouse"			: d.warehouse,
+                "to_warehouse"			: self.warehouse,
                 "project"				: frappe.db.get_value("Sales Order", d.sales_order, "project")
             }
 
@@ -308,25 +308,18 @@ class SimplifiedProductionTool(Document):
         warehouse = get_default_warehouse()
         se = frappe.new_doc("Stock Entry")
         se.update(item_dict)
-
+        
         se.purpose = "Manufacture"
         se.stock_entry_type = "Manufacture"
         se.additional_costs = [
-            {
-                "docstatus": 1,
-                "idx": 1,
+            frappe.get_doc({
+                "doctype": "Landed Cost Taxes and Charges",
                 "expense_account": "5103 - Freight - MG",
-                "exchange_rate": 1.0,
-                "account_currency": "USD",
                 "description": "f",
-                "amount": 0.0,
-                "base_amount": 0.0,
-                "parentfield": "additional_costs",
-                "parenttype": "Stock Entry",
-                "doctype": "Landed Cost Taxes and Charges"
-            }
-            ]
-        se.remarks: "bulk"
+                "amount": 0.0
+                })
+        ]
+        se.remarks = "bulk"
         se.status = "submitted" # submitted or "Draft"
         se.from_bom = 1
         se.use_multi_level_bom = 1
@@ -334,9 +327,9 @@ class SimplifiedProductionTool(Document):
         if (se.sales_order):
             se.title += " for order %s" % (se.sales_order)
         if warehouse:
-            se.from_warehouse = warehouse.get('wip_warehouse')
+            se.from_warehouse = self.warehouse
         if not se.to_warehouse:
-            se.to_warehouse = warehouse.get('fg_warehouse')
+            se.to_warehouse = self.warehouse
 
         se.get_items()
 
