@@ -191,6 +191,8 @@ class SimplifiedProductionTool(Document):
             pi = self.append('items', {})
             pi.warehouse = p['warehouse']
             pi.item_code = p['item_code']
+            # frappe today
+            pi.plannad_start_date = frappe.utils.nowdate()
             pi.description = item_details and item_details.description or ''
             pi.stock_uom = item_details and item_details.stock_uom or ''
             pi.bom_no = item_details and item_details.bom_no or ''
