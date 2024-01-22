@@ -109,6 +109,7 @@ class SimplifiedProductionTool(Document):
                 where mr_item.parent = mr.name
                     and mr.material_request_type = "Manufacture"
                     and mr.docstatus = 1
+                    and mr.status = "Pending"
                     and mr_item.qty > ifnull(mr_item.ordered_qty,0) {0} {1}
                     and (exists (select name from `tabBOM` bom where bom.item=mr_item.item_code
                         and bom.is_active = 1))
@@ -265,6 +266,11 @@ class SimplifiedProductionTool(Document):
                 se.submit()
             se_list = ["""<a href="#Form/Stock Entry/%s" target="_blank">%s</a>""" % (p.name, p.title) for p in se_list]
             msgprint(_("Created {0} stock entries:<br />{1}").format(len(se_list), "<br/>".join(se_list)))
+            for material in self.material_requests:                
+                material_request = frappe.get_doc("Material Request", material.material_request)
+                # material_request.status = "Issued"
+                frappe.db.set_value("Material Request", material_request.name, "status", "Issued")
+                frappe.db.commit()
         else:
             msgprint(_("No Stock Entry created"))
 
