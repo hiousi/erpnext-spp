@@ -57,6 +57,9 @@ frappe.ui.form.on("Simplified Production Tool", {
     frappe.call({
       doc: frm.doc,
       method: "raise_stock_entries",
+      callback: function (r) {
+        cur_frm.reload_doc();
+      },
     });
   },
 
@@ -64,9 +67,6 @@ frappe.ui.form.on("Simplified Production Tool", {
     frappe.call({
       doc: frm.doc,
       method: "raise_material_requests",
-      callback: function (r) {
-        cur_frm.reload_doc();
-      },
     });
   },
 });
