@@ -64,9 +64,10 @@ frappe.ui.form.on("Simplified Production Tool", {
     frappe.call({
       doc: frm.doc,
       method: "raise_material_requests",
+      callback: function (r) {
+        cur_frm.reload_doc();
+      },
     });
-    // reload all the page
-    location.reload(true);
   },
 });
 
