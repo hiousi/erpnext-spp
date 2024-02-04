@@ -1,7 +1,7 @@
 {
  "actions": [],
  "allow_copy": 1,
- "creation": "2017-08-24 11:32:58.610832",
+ "creation": "2024-01-23 11:22:15.712332",
  "description": "Separate stock entries will be created for each finished good item.",
  "doctype": "DocType",
  "document_type": "Setup",
@@ -33,10 +33,12 @@
  ],
  "fields": [
   {
+   "default": "Material Request",
    "fieldname": "get_items_from",
    "fieldtype": "Select",
    "label": "Get Items From",
-   "options": "\nSales Order\nMaterial Request"
+   "options": "\nSales Order\nMaterial Request",
+   "read_only": 1
   },
   {
    "depends_on": "get_items_from",
@@ -140,6 +142,7 @@
   {
    "fieldname": "manufacture_items",
    "fieldtype": "Button",
+   "is_virtual": 1,
    "label": "Manufacture Items"
   },
   {
@@ -159,7 +162,7 @@
  "in_create": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-01-18 14:57:41.656587",
+ "modified": "2024-02-04 17:20:18.334781",
  "modified_by": "Administrator",
  "module": "Simplified Production Process",
  "name": "Simplified Production Tool",
@@ -183,6 +186,7 @@
   }
  ],
  "read_only": 1,
+ "sort_field": "modified",
  "sort_order": "DESC",
  "states": []
 }
