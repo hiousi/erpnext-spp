@@ -37,8 +37,7 @@
    "fieldname": "get_items_from",
    "fieldtype": "Select",
    "label": "Get Items From",
-   "options": "\nSales Order\nMaterial Request",
-   "read_only": 1
+   "options": "\nSales Order\nMaterial Request"
   },
   {
    "depends_on": "get_items_from",
@@ -162,7 +161,7 @@
  "in_create": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-02-04 17:20:18.334781",
+ "modified": "2024-02-04 17:22:55.151826",
  "modified_by": "Administrator",
  "module": "Simplified Production Process",
  "name": "Simplified Production Tool",
