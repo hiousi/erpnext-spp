@@ -222,6 +222,9 @@ class SimplifiedProductionTool(Document):
 
         self.validate_data()
 
+        material_request_date = self.material_requests[0].material_request_date
+        
+
         from erpnext.utilities.transaction_base import validate_uom_is_integer
         validate_uom_is_integer(self, "stock_uom", "planned_qty")
 
@@ -318,6 +321,8 @@ class SimplifiedProductionTool(Document):
         se.update(item_dict)
         
         se.purpose = "Manufacture"
+        se.posting_date = self.material_requests[0].material_request_date
+        se.posting_time = '00:00:00'
         se.stock_entry_type = "Manufacture"
         se.additional_costs = [
             frappe.get_doc({
