@@ -110,6 +110,7 @@
   {
    "fieldname": "get_material_request",
    "fieldtype": "Button",
+   "hidden": 1,
    "label": "Get Material Request"
   },
   {
@@ -161,7 +162,7 @@
  "in_create": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-02-04 17:22:55.151826",
+ "modified": "2024-02-20 15:28:36.162485",
  "modified_by": "Administrator",
  "module": "Simplified Production Process",
  "name": "Simplified Production Tool",
