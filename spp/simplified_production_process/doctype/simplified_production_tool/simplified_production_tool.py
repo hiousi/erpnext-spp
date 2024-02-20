@@ -275,6 +275,7 @@ class SimplifiedProductionTool(Document):
                 material_request = frappe.get_doc("Material Request", material.material_request)
                 # material_request.status = "Issued"
                 frappe.db.set_value("Material Request", material_request.name, "status", "Issued")
+                frappe.db.set_value("Material Request", material_request.name, "transfer_status", "Completed")
                 frappe.db.commit()
         else:
             msgprint(_("No Stock Entry created"))
