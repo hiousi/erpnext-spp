@@ -37,7 +37,7 @@
    "fieldname": "get_items_from",
    "fieldtype": "Select",
    "label": "Get Items From",
-   "options": "\nSales Order\nMaterial Request"
+   "options": "Material Request"
   },
   {
    "depends_on": "get_items_from",
@@ -162,7 +162,7 @@
  "in_create": 1,
  "issingle": 1,
  "links": [],
- "modified": "2024-02-20 15:28:36.162485",
+ "modified": "2024-02-21 14:51:40.797768",
  "modified_by": "Administrator",
  "module": "Simplified Production Process",
  "name": "Simplified Production Tool",
@@ -182,6 +182,16 @@
    "create": 1,
    "read": 1,
    "role": "Manufacturing User",
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Site Manager",
+   "share": 1,
    "write": 1
   }
  ],
